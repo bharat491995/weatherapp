@@ -1,0 +1,35 @@
+<div class="inventory-body">
+    <!--content goes here-->
+  
+        <div class="weather">
+          <h3>Check temprature of your city</h3>
+        </div>
+      
+</div>
+<form class="form-inline">
+  <div class="form-group">
+      <h4> City Name</h4> &nbsp; &nbsp; &nbsp; &nbsp;
+      <input #locationSubmit type="text" id="place" class="form-control" #search [formControl]="searchControl" autocomplete="off" autocapitalize="off" spellcheck="off" style="width: 300px"> &nbsp;
+      <button class="btn btn-classic" type="submit" (click)="onLocationSelect(locationSubmit.value)" >Submit</button>
+  </div>
+  
+</form>
+<br> <br>
+<div style="background-color: #F0F0F0; width: 75%; padding: 20px; border: 1px solid #CCC; margin: 0; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">
+    <p *ngIf="weather.length == 0">Searching...</p>
+    <div *ngIf="weather.length > 0">
+        <table style="width: 100%; text-align: center">
+            <thead></thead>
+            <tbody>
+                <tr>
+                    <td *ngFor="let forecast of weather">
+                        <img [src]="forecast.iconLink" />
+                        <p>{{ forecast.highTemperature }}C / {{ forecast.highTemperature | fahrenheit}}</p>
+                        <p>{{  forecast.utcTime | moment }}</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div> <br>
+
